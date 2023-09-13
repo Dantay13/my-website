@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="resume-container">
+    <!-- Header Section -->
+    <div class="resume-header">
+        <h1>{{ header.name }}</h1>
+        <h2>{{ header.title }}</h2>
+        <p>{{ header.location }} | {{ header.email }} | {{ header.phone }}</p>
+        <p><a href="{{ header.linkedin }}">LinkedIn</a> | <a href="{{ header.github }}">GitHub</a></p>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="resume-summary">
+        <h3>Summary</h3>
+        <p>{{ summary.text }}</p>
+    </div>
+
+    <!-- Technical Skills Section -->
+    <div class="technical-skills">
+        <h3>Technical Skills</h3>
+        <p><strong>Languages:</strong> {{ skills.languages }}</p>
+        <p><strong>Skills and Tools:</strong> {{ skills.tools_and_skills }}</p>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="projects">
+        <h3>Projects</h3>
+        {% for project in projects %}
+        <div class="project">
+            <h4>{{ project.title }}</h4>
+            <p>{{ project.date }} - <a href="{{ project.github_link }}">GitHub</a></p>
+            <p>{{ project.description }}</p>
+            <p><strong>Built with:</strong> {{ project.technologies_used }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Education Section -->
+    <div class="education">
+        <h3>Education</h3>
+        {% for education in educations %}
+        <div class="education-item">
+            <h4>{{ education.institution }}, {{ education.location }}</h4>
+            <p>{{ education.degree }}</p>
+            {% if education.major %}
+            <p><strong>Major:</strong> {{ education.major }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Experience Section -->
+    <div class="experience">
+        <h3>Experience</h3>
+        {% for experience in experiences %}
+        <div class="experience-item">
+            <h4>{{ experience.company }}, {{ experience.location }}</h4>
+            <p><strong>Position:</strong> {{ experience.position }}</p>
+            <p><strong>Duration:</strong> {{ experience.start_date }} - {{ experience.end_date|default:"Currently" }}</p>
+            <p>{{ experience.responsibilities }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

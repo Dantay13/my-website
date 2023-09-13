@@ -19,7 +19,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # Third-party
@@ -28,9 +27,8 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
-    # Local
     "accounts",
-    "pages",
+    "personal",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
@@ -44,6 +42,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -121,14 +120,15 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
-# https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Directory where collected static files will be stored for production
+STATIC_ROOT = str(BASE_DIR / "staticfiles")
 
-# https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+# URL prefix for static files
 STATIC_URL = "/static/"
 
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# Directory where your static files are located
+STATICFILES_DIRS = [str(BASE_DIR / "static")]
+
 
 # http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
