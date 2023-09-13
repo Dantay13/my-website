@@ -4,6 +4,7 @@ from django.conf import settings
 from personal import views
 
 urlpatterns = [
+    path('', views.about_me_view, name='about_me'),
     path('', views.resume_view, name='resume'),  # Use 'resume_view' or the appropriate view name
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),

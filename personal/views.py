@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ResumeHeader, Summary, TechnicalSkill, Project, Education, Experience
+from .models import ResumeHeader, Summary, TechnicalSkill, Project, Education, Experience, AboutMe
 
 
 def about_me_view(request):
@@ -16,12 +16,7 @@ def resume_view(request):
     experiences = Experience.objects.all()
 
     context = {
-        'header': header,
-        'summary': summary,
-        'skills': skills,
-        'projects': projects,
-        'educations': educations,
-        'experiences': experiences
+        'ResumeHeader': ResumeHeader,
     }
 
     return render(request, 'personal/resume.html', context)
